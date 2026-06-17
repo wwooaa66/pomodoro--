@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==============================================
+   Apple-Style Design System — CSS Variables
+   ============================================== */
+
+:root {
+  /* ---- Dark Mode (default) ---- */
+  --bg-primary: #1c1c1e;
+  --bg-secondary: #1a1a1c;
+  --bg-tertiary: #222224;
+
+  --glass-subtle-bg: rgba(255, 255, 255, 0.04);
+  --glass-medium-bg: rgba(255, 255, 255, 0.08);
+  --glass-heavy-bg: rgba(255, 255, 255, 0.13);
+
+  --glass-border-subtle: rgba(255, 255, 255, 0.06);
+  --glass-border-medium: rgba(255, 255, 255, 0.10);
+  --glass-border-heavy: rgba(255, 255, 255, 0.14);
+
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.55);
+  --text-tertiary: rgba(255, 255, 255, 0.25);
+
+  --accent-red: #FF5F57;
+  --accent-green: #30D158;
+  --accent-blue: #64D2FF;
+  --accent-red-glow: rgba(255, 95, 87, 0.35);
+  --accent-green-glow: rgba(48, 209, 88, 0.35);
+  --accent-blue-glow: rgba(100, 210, 255, 0.35);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.5);
+
+  --ring-track: rgba(255, 255, 255, 0.08);
+}
+
+.light {
+  --bg-primary: #F5F5F7;
+  --bg-secondary: #ECECF0;
+  --bg-tertiary: #FFFFFF;
+
+  --glass-subtle-bg: rgba(255, 255, 255, 0.30);
+  --glass-medium-bg: rgba(255, 255, 255, 0.50);
+  --glass-heavy-bg: rgba(255, 255, 255, 0.65);
+
+  --glass-border-subtle: rgba(0, 0, 0, 0.04);
+  --glass-border-medium: rgba(0, 0, 0, 0.08);
+  --glass-border-heavy: rgba(0, 0, 0, 0.12);
+
+  --text-primary: rgba(0, 0, 0, 0.85);
+  --text-secondary: rgba(0, 0, 0, 0.50);
+  --text-tertiary: rgba(0, 0, 0, 0.25);
+
+  --accent-red: #FF3B30;
+  --accent-green: #34C759;
+  --accent-blue: #007AFF;
+  --accent-red-glow: rgba(255, 59, 48, 0.25);
+  --accent-green-glow: rgba(52, 199, 89, 0.25);
+  --accent-blue-glow: rgba(0, 122, 255, 0.25);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.10);
+
+  --ring-track: rgba(0, 0, 0, 0.08);
+}
+
+/* ==============================================
+   Three-Tier Frosted Glass System
+   Layer 1: Subtle — background ambiance
+   Layer 2: Medium — cards, buttons, containers
+   Layer 3: Heavy  — floating panels, overlays
+   ============================================== */
+
+.glass-subtle {
+  background: var(--glass-subtle-bg);
+  backdrop-filter: blur(60px) saturate(180%);
+  -webkit-backdrop-filter: blur(60px) saturate(180%);
+  border: 1px solid var(--glass-border-subtle);
+}
+
+.glass-medium {
+  background: var(--glass-medium-bg);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid var(--glass-border-medium);
+  box-shadow: var(--shadow-sm), inset 0 1px 1px rgba(255, 255, 255, 0.04);
+}
+
+.glass-heavy {
+  background: var(--glass-heavy-bg);
+  backdrop-filter: blur(80px) saturate(200%);
+  -webkit-backdrop-filter: blur(80px) saturate(200%);
+  border: 1px solid var(--glass-border-heavy);
+  box-shadow: var(--shadow-md), inset 0 1px 1px rgba(255, 255, 255, 0.06);
+}
+
+/* Light-mode overrides for inner highlights */
+.light .glass-medium,
+.light .glass-heavy {
+  box-shadow: var(--shadow-sm);
+}
+
+/* ==============================================
+   Global Reset & Base Styles
+   ============================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 22px;
+  font-family: 'Inter', 'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: transparent;
+  color: var(--text-primary);
+}
+
+/* ==============================================
+   Custom Scrollbar — Hidden
+   ============================================== */
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* ==============================================
+   Drag Region — Electron Window Dragging
+   ============================================== */
+
+.drag-region {
+  -webkit-app-region: drag;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+/* ==============================================
+   Ring Progress Transition
+   ============================================== */
+
+.ring-progress {
+  transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==============================================
+   Tabular Numbers — Monospaced digits
+   ============================================== */
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* ==============================================
+   Selection — prevent text selection for app feel
+   ============================================== */
+
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ==============================================
+   Theme Transition — smooth mode switching
+   ============================================== */
+
+.theme-transition,
+.theme-transition * {
+  transition: background-color 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
